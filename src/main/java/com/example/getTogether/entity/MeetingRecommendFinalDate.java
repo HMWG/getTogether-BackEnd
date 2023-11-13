@@ -3,23 +3,23 @@ package com.example.getTogether.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name ="friends")
+@Table(name = "meetingRecommendFinalDate")
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Friends extends BaseTimeEntity{
-
+public class MeetingRecommendFinalDate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "toFriend", nullable = false)
-    private Member toMember;
+    @JoinColumn(name = "meetingRecommendId", nullable = false)
+    private MeetingRecommend meetingRecommend;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fromFriend", nullable = false)
-    private Member fromMember;
+    @Column(nullable = false)
+    private LocalDateTime meetingDate;
 }

@@ -1,3 +1,4 @@
+/*
 package com.example.getTogether.entity;
 
 import jakarta.persistence.Column;
@@ -22,3 +23,4 @@ public class BaseEntity extends BaseTimeEntity{
     @Column(nullable = false, length = 45)
     private long lastModifiedBy;
 }
+*/

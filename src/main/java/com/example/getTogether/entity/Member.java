@@ -10,18 +10,12 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member extends BaseEntity{
+public class Member extends BaseTimeEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, unique = true)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 20)
-    private String username;
-
-    @Column(nullable = false)
-    private String password;
-
     @Column(nullable = false, length = 20)
-    private String name;
+    private String username;
 }
