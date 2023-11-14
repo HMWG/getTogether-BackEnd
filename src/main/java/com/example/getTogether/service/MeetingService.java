@@ -164,7 +164,7 @@ public class MeetingService {
         meetingRecommendRepository.save(meetingRecommend);
 
         if (!meetingCreateDto.getCheckTime()){
-            if(isDate){
+            if(!isDate){
                 addFinalTime(meeting);
             }
         }
