@@ -146,6 +146,14 @@ public class MeetingService {
         }
         if (!meetingCreateDto.getCheckTime()){
             isTime = true;
+            if(isDate){
+                MeetingRecommendFinalDate meetingRecommendFinalDate = MeetingRecommendFinalDate.builder()
+                        .meetingRecommend(meetingRecommendRepository.findByMeetingId(meeting.getId()).get())
+                        .meetingDate(meeting.getStart())
+                        .build();
+
+                meetingRecommendFinalDateRepository.save(meetingRecommendFinalDate);
+            }
         }
         if(meeting.getPlace() == null){
             isPlace = true;

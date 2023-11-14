@@ -292,8 +292,8 @@ public class MeetingRecommendService {
 
             Meeting meeting = meetingRepository.findById(recommendDateDto.getMeetingId()).get();
 
-            double avgLat = calculateAverage(meetingRecommendPlace.stream().map(MeetingRecommendPlace::getLatitude).toList());
-            double avgLng = calculateAverage(meetingRecommendPlace.stream().map(MeetingRecommendPlace::getLongitude).toList());
+            Double avgLat = calculateAverage(meetingRecommendPlace.stream().map(MeetingRecommendPlace::getLatitude).toList());
+            Double avgLng = calculateAverage(meetingRecommendPlace.stream().map(MeetingRecommendPlace::getLongitude).toList());
 
             meetingRecommend.updateFinalLat(avgLat);
             meetingRecommend.updateFinalLng(avgLng);
@@ -306,19 +306,19 @@ public class MeetingRecommendService {
         return check;
     }
 
-    public static double calculateAverage(List<Double> list) {
+    public Double calculateAverage(List<Double> list) {
         if (list == null || list.isEmpty()) {
             return 0.0;
         }
 
         // 리스트 안의 값들을 더함
-        double sum = 0;
-        for (double number : list) {
+        Double sum = 0.0;
+        for (Double number : list) {
             sum += number;
         }
 
         // 평균을 계산하여 반환
-        return (double) sum / list.size();
+        return (Double) sum / list.size();
     }
 
 
