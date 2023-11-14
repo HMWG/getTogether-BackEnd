@@ -146,9 +146,6 @@ public class MeetingService {
         }
         if (!meetingCreateDto.getCheckTime()){
             isTime = true;
-            if(isDate){
-                addFinalTime(meeting);
-            }
         }
         if(meeting.getPlace() == null){
             isPlace = true;
@@ -166,6 +163,11 @@ public class MeetingService {
 
         meetingRecommendRepository.save(meetingRecommend);
 
+        if (!meetingCreateDto.getCheckTime()){
+            if(isDate){
+                addFinalTime(meeting);
+            }
+        }
 
         checkMeetingType(meeting);
 
