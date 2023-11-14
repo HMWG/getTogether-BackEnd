@@ -147,12 +147,7 @@ public class MeetingService {
         if (!meetingCreateDto.getCheckTime()){
             isTime = true;
             if(isDate){
-                MeetingRecommendFinalDate meetingRecommendFinalDate = MeetingRecommendFinalDate.builder()
-                        .meetingRecommend(meetingRecommendRepository.findByMeetingId(meeting.getId()).get())
-                        .meetingDate(meeting.getStart())
-                        .build();
-
-                meetingRecommendFinalDateRepository.save(meetingRecommendFinalDate);
+                addFinalTime(meeting);
             }
         }
         if(meeting.getPlace() == null){
@@ -176,6 +171,17 @@ public class MeetingService {
 
         System.out.println("모임을 생성하였습니다. 이름 : " + meeting.getName());
     }
+
+    @Transactional
+    public void addFinalTime(Meeting myMeeting) {
+        MeetingRecommendFinalDate meetingRecommendFinalDate = MeetingRecommendFinalDate.builder()
+                .meetingRecommend(meetingRecommendRepository.findByMeetingId(myMeeting.getId()).get())
+                .meetingDate(myMeeting.getStart())
+                .build();
+
+        meetingRecommendFinalDateRepository.save(meetingRecommendFinalDate);
+    }
+
 
 
     @Transactional
